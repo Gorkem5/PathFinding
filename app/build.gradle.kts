@@ -52,18 +52,17 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.example.pathfindingjava.PathFindingApp"
+    mainClass = "org.example.PathFindingApp"
 }
 
 // Ensure JavaFX native jars are placed on the module-path when running
 tasks.named("run", JavaExec::class) {
-    doFirst {
-        val javafxJars = configurations.runtimeClasspath.get()
-            .filter { it.name.startsWith("javafx-") }
-            .joinToString(File.pathSeparator) { it.absolutePath }
+    // configure module-path for JavaFX at configuration time to avoid non-serializable script closures
+    val javafxJars = configurations.runtimeClasspath.get()
+        .filter { it.name.startsWith("javafx-") }
+        .joinToString(File.pathSeparator) { it.absolutePath }
 
-        if (javafxJars.isNotEmpty()) {
-            jvmArgs = listOf("--module-path", javafxJars, "--add-modules", "javafx.controls,javafx.fxml")
-        }
+    if (javafxJars.isNotEmpty()) {
+        jvmArgs = listOf("--module-path", javafxJars, "--add-modules", "javafx.controls,javafx.fxml")
     }
 }

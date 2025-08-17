@@ -1,4 +1,4 @@
-package com.example.pathfindingjava;
+package org.example;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +10,8 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.pathfindingjava.Visualizer;
-import com.example.pathfindingjava.MapGenerator;
+import org.example.Visualizer;
+import org.example.MapGenerator;
 
 public class PathFindingController implements Initializable {
 

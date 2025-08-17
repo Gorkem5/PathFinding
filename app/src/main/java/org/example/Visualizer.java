@@ -8,7 +8,7 @@ public class Visualizer {
     private final GraphicsContext gc;
     private final Canvas canvas;
 
-    public String defaultRectHexColor = "#303030";
+    public String defaultRectHexColor = "#303033";
     public String defaultLineHexColor = "#dbdbdb";
     public String defaultDotHexColor = "#ffffff";
 
