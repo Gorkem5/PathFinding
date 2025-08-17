@@ -5,10 +5,14 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/9.0.0/userguide/building_java_projects.html in the Gradle documentation.
  */
 
+import org.gradle.api.tasks.JavaExec
+import java.io.File
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
+
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -21,16 +25,45 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    // JavaFX dependencies (use platform classifier for native libs)
+    val javafxVersion = "21.0.8"
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val classifier = when {
+        os.isWindows -> "win"
+        os.isMacOsX -> "mac"
+        else -> "linux"
+    }
+
+    implementation("org.openjfx:javafx-controls:$javafxVersion:$classifier")
+    implementation("org.openjfx:javafx-fxml:$javafxVersion:$classifier")
+    implementation("org.openjfx:javafx-graphics:$javafxVersion:$classifier")
+    implementation("org.openjfx:javafx-base:$javafxVersion:$classifier")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(24)
+        languageVersion = JavaLanguageVersion.of(21)
     }
+    // Help Gradle compile modular Java with JavaFX on module-path
+    modularity.inferModulePath.set(true)
 }
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "com.example.pathfindingjava.PathFindingApp"
+}
+
+// Ensure JavaFX native jars are placed on the module-path when running
+tasks.named("run", JavaExec::class) {
+    doFirst {
+        val javafxJars = configurations.runtimeClasspath.get()
+            .filter { it.name.startsWith("javafx-") }
+            .joinToString(File.pathSeparator) { it.absolutePath }
+
+        if (javafxJars.isNotEmpty()) {
+            jvmArgs = listOf("--module-path", javafxJars, "--add-modules", "javafx.controls,javafx.fxml")
+        }
+    }
 }
