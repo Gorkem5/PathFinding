@@ -12,7 +12,6 @@ public class MapGenerator {
     private final double yCanvasWidth;
 
     private Map<Integer, SimpleEntry<Double, Double>> dotMap = new HashMap<>(); // x, y
-    private record RoadData(int dot1, int dot2, double length) {}
     private List<RoadData> roadList = new ArrayList<>();
     private Set<Integer> dotHavePath = new HashSet<>();
 
@@ -38,7 +37,8 @@ public class MapGenerator {
             double yPos = randomNum(0, yCanvasWidth);
 
             dotMap.put(i, new SimpleEntry<>(xPos, yPos));
-            vs.drawDot(xPos, yPos, 4);
+            if(i == 1 || i == dotAmount) vs.drawDot(xPos, yPos, 8, "#7F00FF");
+            else vs.drawDot(xPos, yPos, 4);
         }
 
 
@@ -62,7 +62,6 @@ public class MapGenerator {
                         }
                 }
 
-                if(!haveLine) vs.drawDot(dotMap.get(i).getKey(), dotMap.get(i).getValue(), 4, vs.defaultRectHexColor);
             }
         }
     }
@@ -132,6 +131,14 @@ public class MapGenerator {
 
     private boolean isSameDot(double x1, double y1, double x2, double y2) {
         return x1 == x2 && y1 == y2;
+    }
+
+    public Map<Integer, SimpleEntry<Double, Double>> getDotMap() {
+        return dotMap;
+    }
+
+    public List<RoadData> getRoadList() {
+        return roadList;
     }
 
 

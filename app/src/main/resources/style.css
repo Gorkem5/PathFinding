@@ -19,3 +19,30 @@
 .canvas {
     -fx-background-color: green; /* Background */
 }
+
+.slider-bar {
+    -fx-background-color: black;
+    -fx-padding: 8px;
+}
+
+/* Track */
+.slider-bar .track {
+    -fx-background-color: black;
+    -fx-border-color: white;    /* white border for track */
+    -fx-border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-pref-height: 12px;      /* taller track */
+}
+
+/* Thumb (the "dot") */
+.slider-bar .thumb {
+    -fx-background-color: black;
+    -fx-border-color: white;     /* white border for thumb */
+    -fx-border-width: 2px;
+    -fx-background-radius: 0;    /* make it a square */
+    -fx-border-radius: 0;
+    -fx-pref-width: 18px;        /* wider square */
+    -fx-pref-height: 18px;       /* taller square */
+}
+

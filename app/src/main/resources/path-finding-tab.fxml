@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="plane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PathFindingController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="plane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.6"
+ xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PathFindingController">
    <children>
       <Button layoutX="40.0" layoutY="35.0" mnemonicParsing="false" onAction="#generateMap" prefHeight="39.0" prefWidth="150.0" text="Generate Map">
          <font>
@@ -17,7 +18,13 @@
             <Font name="Consolas" size="16.0" />
          </font>
       </Button>
-      <Text layoutX="426.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="00:00" textAlignment="CENTER" wrappingWidth="127.13671875">
+      <Text layoutX="426.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="Speed:" textAlignment="CENTER" wrappingWidth="127.13671875">
+         <font>
+            <Font name="Consolas" size="30.0" />
+         </font>
+      </Text>
+      <Slider fx:id="CalcSpeedSlider" layoutX="560.0" layoutY="40.0" prefHeight="30.0" prefWidth="200.0" styleClass="slider-bar" />
+      <Text fx:id="iterationCount" layoutX="805.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="0000" textAlignment="CENTER" wrappingWidth="127.13671875">
          <font>
             <Font name="Consolas" size="30.0" />
          </font>
