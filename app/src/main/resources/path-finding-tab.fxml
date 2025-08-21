@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -18,17 +22,37 @@
             <Font name="Consolas" size="16.0" />
          </font>
       </Button>
-      <Text layoutX="426.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="Speed:" textAlignment="CENTER" wrappingWidth="127.13671875">
+      <Text layoutX="397.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="Speed:" textAlignment="CENTER" wrappingWidth="127.13671875">
          <font>
             <Font name="Consolas" size="30.0" />
          </font>
       </Text>
-      <Slider fx:id="CalcSpeedSlider" layoutX="560.0" layoutY="40.0" prefHeight="30.0" prefWidth="200.0" styleClass="slider-bar" />
-      <Text fx:id="iterationCount" layoutX="805.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="0000" textAlignment="CENTER" wrappingWidth="127.13671875">
+      <Slider fx:id="CalcSpeedSlider" layoutX="524.0" layoutY="38.0" prefHeight="30.0" prefWidth="200.0" styleClass="slider-bar" />
+      <Text fx:id="iterationCount" layoutX="713.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="0000" textAlignment="CENTER" wrappingWidth="127.13671875">
          <font>
             <Font name="Consolas" size="30.0" />
          </font>
       </Text>
+      <ChoiceBox fx:id="pathFindingType" layoutX="848.0" layoutY="42.0" prefHeight="30.0" prefWidth="127.0" styleClass="choice-box">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="BFS" />
+               <String fx:value="DFS" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
       <Canvas fx:id="canvas" height="660.0" layoutX="40.0" layoutY="100.0" styleClass="canvas" width="1120.0" />
+      <TextField fx:id="dotCount" layoutX="1087.0" layoutY="27.0" prefHeight="21.0" prefWidth="81.0" styleClass="input-field" />
+      <TextField fx:id="lineCount" layoutX="1087.0" layoutY="62.0" prefHeight="21.0" prefWidth="81.0" styleClass="input-field" />
+      <Text layoutX="984.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="Dots:" textAlignment="CENTER" wrappingWidth="117.13671875">
+         <font>
+            <Font name="Consolas" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="984.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timer-text" text="Roads:" textAlignment="CENTER" wrappingWidth="117.13671875">
+         <font>
+            <Font name="Consolas" size="20.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

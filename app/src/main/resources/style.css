@@ -46,3 +46,66 @@
     -fx-pref-height: 18px;       /* taller square */
 }
 
+.choice-box {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: "Consolas";
+}
+
+.choice-box {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: "Consolas";
+}
+
+.choice-box .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Consolas";
+}
+
+.choice-box .context-menu .menu-item .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Consolas";
+}
+
+.choice-box .context-menu {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+
+
+.input-field {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: "Consolas";
+}
+
+/* Remove the default focus highlight */
+.input-field:focused {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-effect: none;
+}
+
+/* Style the prompt text (placeholder) */
+.input-field .text {
+    -fx-fill: white;
+}
+
+/* Style prompt text when field is empty */
+.input-field .prompt-text {
+    -fx-fill: #888888;
+}
