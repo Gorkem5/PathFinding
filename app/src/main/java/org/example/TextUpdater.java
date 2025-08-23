@@ -19,7 +19,7 @@ public class TextUpdater {
     public void setText(String value) {
         Platform.runLater(() -> {
             StringBuilder zeros = new StringBuilder();
-            if (symbolTarget > value.length())
+            if(symbolTarget > value.length())
                 zeros.append("0".repeat(symbolTarget - value.length()));
 
             textNode.setText(zeros + value);

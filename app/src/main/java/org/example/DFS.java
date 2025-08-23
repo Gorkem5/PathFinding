@@ -53,18 +53,12 @@ public class DFS extends Thread{
                     vs.drawLine(dotMap.get(current).getKey(), dotMap.get(current).getValue(), dotMap.get(next).getKey(), dotMap.get(next).getValue(), 5,"#000000");
                     textUpdater.setText(String.valueOf(iterationCount++));
 
-                    if(pathToDot.containsKey(next)) {
-                        if (pathToDot.get(next).size() > pathToDot.get(current).size() + 1) {
-                            ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
-                            newPath.add(next);
-                            pathToDot.put(next, newPath);
-                        }
-                    }
-                    else {
+                    if(!pathToDot.containsKey(next)) {
                         ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
                         newPath.add(next);
                         pathToDot.put(next, newPath);
                     }
+
 
                     if (!visited.contains(next)) {
                         deque.addLast(next);
@@ -76,7 +70,9 @@ public class DFS extends Thread{
                             return;
                         }
                     }
+
                 }
+
             }
         }
 
@@ -87,4 +83,6 @@ public class DFS extends Thread{
             vs.drawLine(dotMap.get(prev).getKey(), dotMap.get(prev).getValue(), dotMap.get(cur).getKey(), dotMap.get(cur).getValue(), 5,"#008000");
         }
     }
+
+
 }
