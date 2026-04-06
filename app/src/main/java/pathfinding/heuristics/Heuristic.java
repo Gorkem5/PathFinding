@@ -1,4 +1,4 @@
-package org.example;
+package pathfinding.heuristics;
 
 /**
  * A simple contract for pathfinding heuristics.

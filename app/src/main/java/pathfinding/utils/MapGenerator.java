@@ -1,10 +1,13 @@
-package org.example;
+package pathfinding.utils;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
+import pathfinding.model.RoadData;
+import pathfinding.ui.Visualizer;
+import pathfinding.algorithms.BFS;
 
 public class MapGenerator {
 

@@ -1,4 +1,4 @@
-package org.example;
+package pathfinding.heuristics;
 
 import java.util.Map;
 import java.util.AbstractMap.SimpleEntry;

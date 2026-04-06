@@ -1,9 +1,12 @@
-package org.example;
+package pathfinding.algorithms;
 
 import java.io.Console;
 import java.util.*;
+import pathfinding.model.RoadData;
+import pathfinding.ui.Visualizer;
+import pathfinding.ui.TextUpdater;
 
-public class BFS extends Thread{
+public class DFS extends Thread{
     private final Visualizer vs;
     private Map<Integer, AbstractMap.SimpleEntry<Double, Double>> dotMap = new HashMap<>(); // x, y
 
@@ -18,7 +21,7 @@ public class BFS extends Thread{
 
     private Map<Integer, ArrayList<Integer>> pathToDot = new HashMap<>();
 
-    BFS(Visualizer vs, Map<Integer, AbstractMap.SimpleEntry<Double, Double>> dotMap, List<RoadData> roadList, int startDot, int endDot, int sleepTime, TextUpdater textUpdater, String name) {
+    public DFS(Visualizer vs, Map<Integer, AbstractMap.SimpleEntry<Double, Double>> dotMap, List<RoadData> roadList, int startDot, int endDot, int sleepTime, TextUpdater textUpdater, String name) {
         super(name);
         this.vs = vs;
         this.dotMap = dotMap;
@@ -31,7 +34,7 @@ public class BFS extends Thread{
 
     public void run() {
         Set<Integer> visited = new HashSet<>();
-        
+
         Deque<Integer> deque = new ArrayDeque<>();
         deque.addLast(startDot);
         visited.add(startDot);
@@ -40,7 +43,7 @@ public class BFS extends Thread{
         int current = 0;
         while(current != endDot && !visited.contains(endDot)) {
             if(!deque.isEmpty())
-                current = deque.pollFirst();
+                current = deque.pollLast();
             else return;
 
             vs.drawDot(dotMap.get(current).getKey(), dotMap.get(current).getValue(), 5, "#FFFF00");
@@ -53,18 +56,12 @@ public class BFS extends Thread{
                     vs.drawLine(dotMap.get(current).getKey(), dotMap.get(current).getValue(), dotMap.get(next).getKey(), dotMap.get(next).getValue(), 5,"#000000");
                     textUpdater.setText(String.valueOf(iterationCount++));
 
-                    if(pathToDot.containsKey(next)) {
-                        if (pathToDot.get(next).size() > pathToDot.get(current).size() + 1) {
-                            ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
-                            newPath.add(next);
-                            pathToDot.put(next, newPath);
-                        }
-                    }
-                    else {
+                    if(!pathToDot.containsKey(next)) {
                         ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
                         newPath.add(next);
                         pathToDot.put(next, newPath);
                     }
+
 
                     if (!visited.contains(next)) {
                         deque.addLast(next);
@@ -76,7 +73,9 @@ public class BFS extends Thread{
                             return;
                         }
                     }
+
                 }
+
             }
         }
 
@@ -86,46 +85,6 @@ public class BFS extends Thread{
             int cur = path.get(i);
             vs.drawLine(dotMap.get(prev).getKey(), dotMap.get(prev).getValue(), dotMap.get(cur).getKey(), dotMap.get(cur).getValue(), 5,"#008000");
         }
-    }
-
-    public ArrayList<Integer> getListOfAccessiblePoints(int Dot) {
-        ArrayList<Integer> visited = new ArrayList<>();
-
-        Deque<Integer> deque = new ArrayDeque<>();
-        deque.addLast(startDot);
-        visited.add(startDot);
-        pathToDot.put(startDot, new ArrayList<>(List.of(startDot)));
-
-        int current = 0;
-        while(!deque.isEmpty()) {
-            current = deque.pollFirst();
-
-            for (RoadData roadData : roadList) {
-                int dot1 = roadData.dot1();
-                int dot2 = roadData.dot2();
-                if (dot1 == current || dot2 == current) {
-                    int next = dot1 == current ? dot2 : dot1;
-
-                    if (pathToDot.containsKey(next)) {
-                        if (pathToDot.get(next).size() > pathToDot.get(current).size() + 1) {
-                            ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
-                            newPath.add(next);
-                            pathToDot.put(next, newPath);
-                        }
-                    } else {
-                        ArrayList<Integer> newPath = new ArrayList<>(pathToDot.get(current));
-                        newPath.add(next);
-                        pathToDot.put(next, newPath);
-                    }
-
-                    if (!visited.contains(next)) {
-                        deque.addLast(next);
-                        visited.add(next);
-                    }
-                }
-            }
-        }
-        return visited;
     }
 
 

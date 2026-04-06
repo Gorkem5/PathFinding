@@ -1,7 +1,12 @@
-package org.example;
+package pathfinding.algorithms;
 
 import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
+import pathfinding.model.RoadData;
+import pathfinding.ui.Visualizer;
+import pathfinding.ui.TextUpdater;
+import pathfinding.heuristics.Heuristic;
+import pathfinding.heuristics.EuclideanHeuristic;
 
 /**
  * A* pathfinding using a pluggable Heuristic. Visualization mirrors BFS/DFS.

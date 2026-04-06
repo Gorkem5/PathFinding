@@ -1,4 +1,4 @@
-package org.example;
+package pathfinding;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +11,11 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-// Fixed incorrect package imports after manual edits
-import org.example.Visualizer;
-import org.example.MapGenerator;
+import pathfinding.ui.Visualizer;
+import pathfinding.ui.TextUpdater;
+import pathfinding.utils.MapGenerator;
+import pathfinding.algorithms.BFS;
+import pathfinding.algorithms.DFS;
 import javafx.scene.text.Text;
 
 public class PathFindingController implements Initializable {

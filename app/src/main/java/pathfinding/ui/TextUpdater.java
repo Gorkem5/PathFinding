@@ -1,4 +1,4 @@
-package org.example;
+package pathfinding.ui;
 
 import javafx.application.Platform;
 import javafx.scene.text.Text;
