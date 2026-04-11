@@ -1,17 +1,22 @@
 package pathfinding.utils;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-
-import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
+import pathfinding.algorithms.BFS;
 import pathfinding.model.RoadData;
 import pathfinding.ui.Visualizer;
-import pathfinding.algorithms.BFS;
 
 public class MapGenerator {
 
     private final Visualizer vs;
+    private final Random random = new Random();
 
     private final double xCanvasWidth;
     private final double yCanvasWidth;
@@ -57,11 +62,11 @@ public class MapGenerator {
 //      Lonely dot removal
         for (int i = 1; i <= dotAmount; i++) {
             if(!dotHavePath.contains(i)){
-                boolean haveLine = false;
+                //boolean haveLine = false;
                 for (int j = 1; j <= dotAmount; j++) {
                     if(i != j)
                         if(drawLine(i, j, null)){
-                            haveLine = true;
+                            //haveLine = true;
                             break;
                         }
                 }
@@ -87,11 +92,11 @@ public class MapGenerator {
 //            bfs = new BFS(vs, dotMap, roadList, 1, dotAmount, 0, null, "Instant road checker");
         }
 
-        BFS bfs2 = new BFS(vs, dotMap, roadList, 1, dotAmount, 0, null, "Instant road checker");
-        HashSet<Integer> connectedToStartSet2 = new HashSet<>(bfs.getListOfAccessiblePoints(1));
-        if(connectedToStartSet2.contains(dotAmount)) System.out.println("have");
-        else System.out.println("dont have");
-        System.out.println(connectedToStartSet.size() + " size :-: dot amount " + dotAmount);
+        // BFS bfs2 = new BFS(vs, dotMap, roadList, 1, dotAmount, 0, null, "Instant road checker");
+        // HashSet<Integer> connectedToStartSet2 = new HashSet<>(bfs2.getListOfAccessiblePoints(1));
+        // if(connectedToStartSet2.contains(dotAmount)) System.out.println("have");
+        // else System.out.println("dont have");
+        // System.out.println(connectedToStartSet.size() + " size :-: dot amount " + dotAmount);
 
 
     }
@@ -133,17 +138,14 @@ public class MapGenerator {
     }
 
     public float randomNum(float min, float max) {
-        Random rand = new Random();
-        return min + rand.nextFloat(max - min + 1);
+        return min + random.nextFloat(max - min + 1);
     }
 
     public double randomNum(double min, double max) {
-        Random rand = new Random();
-        return min + rand.nextDouble(max - min + 1);
+        return min + random.nextDouble(max - min + 1);
     }
     public int randomNum(int min, int max) {
-        Random rand = new Random();
-        return min + rand.nextInt(max - min + 1);
+        return min + random.nextInt(max - min + 1);
     }
 
     public boolean lineIntersect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
