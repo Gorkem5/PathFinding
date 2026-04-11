@@ -52,7 +52,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.PathFindingApp"
+    mainClass = "pathfinding.PathFindingApp"
 }
 
 // Ensure JavaFX native jars are placed on the module-path when running
